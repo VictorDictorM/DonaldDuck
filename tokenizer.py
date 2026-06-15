@@ -1,13 +1,13 @@
 import re
 
-with open("data/sample.txt", "r", encoding="utf-8") as f:
+with open("data/trump_corpus.txt", "r", encoding="utf-8") as f:
     text = f.read()
 
 
 def tokenize(text):
     text = text.lower()
-    # words and punctuation as separate tokens
-    return re.findall(r"\w+|[^\w\s]", text)
+    # <|endoftext|> stays a single token; otherwise words and punctuation separately
+    return re.findall(r"<\|endoftext\|>|\w+|[^\w\s]", text)
 
 
 tokens = tokenize(text)
